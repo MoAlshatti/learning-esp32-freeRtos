@@ -1,0 +1,3 @@
+Using a queue is great for communication between two Tasks, or between an interrupt and a task (for this we use a different set of functions so becareful). <br><br> To create a Queue,<br> we use the **xQueueCreate** which takes the max size of the queue and the size of one element. <br><br>To send a value to the queue, we use **xQueueSend** and **xQueueRecieve** to recieve the value.<br><br> There are also other functions for sending and recieving like **xQueueSendToBack** (which is equivalent to xQueueSend) and **xQueueSendToFront** which sends to the fron of the queue instead.
+<br><br>
+I havent look into interrupts yet, but there are specific set of functions to send and recieve from interrupts, which are appended by ISR i.e. **xQueueRecieveFromISR**.
