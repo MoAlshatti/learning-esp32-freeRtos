@@ -1,0 +1,3 @@
+to create a mutex in freeRtos, we use SemaphoreHandle_t struct, and xSemaphoreCreateMutex function to initialize it. to acquire/lock the mutex, we use xSemaphoreTake, which takes two parameters, the mutex struct, and the time it waits for the mutex to become free if its locked. portMAX_DELAY can be used for the second parameter to wait indefinitely. To unlock the mutex we use xSemaphoreGive function.
+
+To destroy a mutex use vSemaphoreDelete.
