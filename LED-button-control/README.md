@@ -1,0 +1,1 @@
+Turns the LED on when the button is pressed, and off when pressed again. <br> Keep in mind using **xTaskResumeFromISR** to synchrnise an interrupt with a task is dangerous according to FreeRTOS website, since resuming could occur before task suspension, therefore it would be better to use task notification or a mutex https://tinyurl.com/4c9knfsr .
