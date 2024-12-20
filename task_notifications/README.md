@@ -5,11 +5,11 @@ So for many macros we will use, there is a version of them appended with **Index
 To send a notification to a task from another task, there are a few functions/macros we can use: <br>
 1- **xTaskNotifyGive**: increments the value by 1 and send it<br>
 2- **xTaskNotify**: more general than **xTaskNotifyGive**, allows you to choose what to do with the value, whether to change it or increment it or else. To do that, you have to choose the new value in ulValue and the action in eAction, the actions are predfined <br><br>
-a- eNoAction : value not updated <br>
-b- eSetBits: notification value bitwised with ulValue.<br>
-c- eIncrement
-d- eSetVAlueWithOverwrite: force overwrites notification value to ulValue<br>
-e- eSetValueWithoutOverwrite: only sets the value if notification doesnt have a value <br>
+a- **eNoAction** : value not updated <br>
+b- **eSetBits**: notification value bitwised with ulValue.<br>
+c- **eIncrement**<br>
+d- **eSetVAlueWithOverwrite**: force overwrites notification value to ulValue<br>
+e- **eSetValueWithoutOverwrite**: only sets the value if notification doesnt have a value <br>
 
 3- **ulTaskNotifyTake**: Decrements the value by 1, it also blocks for a specified number of ticks.<br>
 4- **xTaskNotifyWAit**: allows you to choose what to do the notification value when recieved, ulBitsToClearOnEntry allows you to choose specific bits 
