@@ -3,8 +3,8 @@ So for many macros we will use, there is a version of them appended with **Index
 
 
 To send a notification to a task from another task, there are a few functions/macros we can use: <br>
-1- **xTaskNotifyGive**: increments the value by 1 and send it
-2- **xTastNotify**: more general than **xTaskNotifyGive**, allows you to choose what to do with the value, whether to change it or increment it or else. To do that, you have to choose the new value in ulValue and the action in eAction, the actions are predfined <br>
+1- **xTaskNotifyGive**: increments the value by 1 and send it<br>
+2- **xTaskNotify**: more general than **xTaskNotifyGive**, allows you to choose what to do with the value, whether to change it or increment it or else. To do that, you have to choose the new value in ulValue and the action in eAction, the actions are predfined <br>
 a- eNoAction : value not updated <br>
 b- eSetBits: notification value bitwised with ulValue.<br>
 c- eIncrement
