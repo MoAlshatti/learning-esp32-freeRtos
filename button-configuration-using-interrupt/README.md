@@ -9,6 +9,6 @@ then call the **gpio_config** function.<br><br>
 To create an interrupt, there are multiple functions we can use, https://tinyurl.com/38sxbsfy, one of which is **gpio_install_isr_service**, which can take 0 or ESP_INTR_FLAG_IRAM. <br>
 to choose the ISR function and the pins on which the interrupt is triggered, we call **gpio_isr_handler_add**<br><br>
 
-ISR functions have to have [IRAM_ATTR](https://tinyurl.com/38sxbsfy) prefixed the function name, which forces the code to live in the IRAM<br>
+ISR functions have to have **IRAM_ATTR** prefixed the function name, which forces the code to live in the IRAM<br>
 
 
