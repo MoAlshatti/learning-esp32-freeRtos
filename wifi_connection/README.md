@@ -1,6 +1,6 @@
-### Event group
+### Event groups
 
-First lets talkl about how events work. We define an event handle, and then create an event group using the **xEventGroupCreate** function which returns the event handle. Now the we want the event group to signal an event, we do that by creating bit variables bit1_var = BIT0; and bit2_var = BIT1; . Now Lets say we have a function that waits for an event, then does something, so it calls the **xEventGroupWaitBits** which takes the following parameters <br>
+First lets talk about how event groups work. We define an event handle, and then create an event group using the **xEventGroupCreate** function which returns the event handle. Now we want the event group to signal an event, we do that by creating bit variables, bit1_var = BIT0; and bit2_var = BIT1; . Now Lets say we have a function that waits for an event then does something, so it calls the **xEventGroupWaitBits** which takes the following parameters <br>
 1-**event group handle**<br>
 2-**bit value we want to wait on**: so if we have two bits (potentially more), we OR them together, so under the hood it looks like (0001 | 0010) = 0011 .<br>
 3- **whether to clear on exit**: if set to pdTRUE, all bits are cleared<br>
@@ -11,7 +11,12 @@ Now we need to send the bit signal from somewhere to signal an eventto the wait 
 
 ### Event loops and Default event loops
 
-Event loops are seperate from event groups.  ....
+**Event loops** are seperate from event groups. Event loops are like interrupts but on software level. As in you create a loop by calling **esp_event_loop_create** and give it a loop handle and loop arguments. the loop then monitors events, and you create event handler functions for each event (or one handler for more than one event), then you register handler to the loop using the **esp_event_handler_register_with** function, which takes the loop handler, the event and the handler function among other things. To post events to the loop we use **esp_event_post_to** function. The loop then monitors the events and whenever an event occurs it queues the handler function. **Note**: There are more details on declaring event bases and event IDs that I wont go through here.<br>
+**Note**: for more details about event base and event ID, https://tinyurl.com/yvpjhyu7
+<br><br>
+
+**Default event loops** are the same but for system events, like WIFI. since there is only one default loop, the API functions dont need a loop handler as an argument, other than that they are the same, so we have **esp_event_loop_create_default**, **esp_event_handler_register**, and **esp_event_post**. We will use pre-existing event bases and IDs from the libraries.
+
 
 
 ### NVS 
