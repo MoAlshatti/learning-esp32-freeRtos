@@ -6,12 +6,11 @@ First lets talk about how event groups work. We define an event handle, and then
 3- **whether to clear on exit**: if set to pdTRUE, all bits are cleared<br>
 4- **whether to wait for all bits**: if set to pdTRUE, the function will wait for all bits before continuing, if set to pdFALSE, any change to any bit will make it continue.<br>
 5- **wait time in ticks** <br>
-
-Now we need to send the bit signal from somewhere to signal an eventto the wait function, so we call the **xEventGroupSetBits** function, which takes an event group handle, and bit variable i.e. bit1_var . <br><br>
+Now we need to send the bit signal from somewhere to signal an event to the wait function, so we call the **xEventGroupSetBits** function, which takes an event group handle, and bit variable i.e. bit1_var . <br><br>
 
 ### Event loops and Default event loops
 
-**Event loops** are seperate from event groups. Event loops are like interrupts but on software level. As in you create a loop by calling **esp_event_loop_create** and give it a loop handle and loop arguments. the loop then monitors events, and you create event handler functions for each event (or one handler for more than one event), then you register handler to the loop using the **esp_event_handler_register_with** function, which takes the loop handler, the event and the handler function among other things. To post events to the loop we use **esp_event_post_to** function. The loop then monitors the events and whenever an event occurs it queues the handler function. **Note**: There are more details on declaring event bases and event IDs that I wont go through here.<br>
+**Event loops** are seperate from event groups. Event loops are like interrupts but on software level. As in you create a loop by calling **esp_event_loop_create** and give it a loop handle and loop arguments, and you create event handler functions for each event (or one handler for more than one event), then you register the handler to the loop using the **esp_event_handler_register_with** function, which takes the loop handler, the event and the handler function among other things. To post events to the loop we use **esp_event_post_to** function. The loop then monitors the events and whenever an event occurs it queues the handler function. **Note**: There are more details on declaring event bases and event IDs that I wont go through here.<br>
 **Note**: for more details about event base and event ID, https://tinyurl.com/yvpjhyu7
 <br><br>
 
@@ -25,4 +24,9 @@ what is nvs and why do we need to initialize it? nvs stands for non volatile sto
 
 
 ### Connecting to WIFI
+
+**esp_netif_init** function: initializes IP/TCP stack.<br>
+**esp_netif_create_default_wifi_sta** function: The API creates esp_netif object with default WiFi station config, attaches the netif to wifi and registers wifi handlers to the default event loop (taken from the func description). This is why we don't need to post any event to the default loop in our case, its abstracted away from us. <br>
+**esp_wifi_init** function: Initialize WiFi Allocate resource for WiFi driver, such as WiFi control structure, RX/TX buffer, WiFi NVS structure etc. This WiFi also starts WiFi task (taken from func description). This function takes a pointer to a **wifi_init_config_t** struct. <br>
+
 
