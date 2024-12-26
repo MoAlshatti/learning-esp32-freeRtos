@@ -1,0 +1,1 @@
+Using a basic PIR motion sensor and an LED. I sat the sensitiviy and delay to the lowest possible on the motion sensor (delay is about 3 seconds and sensitiviy is 3 meters). Each time it detects motions it changes the LED state.
